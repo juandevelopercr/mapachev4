@@ -16,6 +16,6 @@ jobs:
       - name: Upload mapachev4
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: 77.237.234.253XX 
+          server: 77.237.234.253
           username: ${{ secrets.FTPUSERNAME }}
           password: ${{ secrets.FTPPASSWORD }}
