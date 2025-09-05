@@ -57,7 +57,7 @@ class AgentController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-        
+
     }
 
     /**
@@ -69,7 +69,6 @@ class AgentController extends Controller
     public function actionDelete($id)
     {
 	    $model = $this->findModel($id);
-
 	    if($model->username != User::IS_SUPERADMIN)
 	    {
 		    $avatar= $model->avatar;
