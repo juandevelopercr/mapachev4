@@ -1,0 +1,21 @@
+name: Sincronizar a FTP al hacer push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ftp_principal:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout del repositorio mapachev4
+        uses: actions/checkout@v4
+  
+      - name: Upload mapachev4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 77.237.234.253XX 
+          username: ${{ secrets.FTPUSERNAME }}
+          password: ${{ secrets.FTPPASSWORD }}

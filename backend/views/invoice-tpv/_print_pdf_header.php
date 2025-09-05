@@ -1,0 +1,76 @@
+<?php
+use backend\models\nomenclators\ConditionSale;
+use common\models\User;
+use common\models\GlobalFunctions;
+use backend\models\nomenclators\UtilsConstants;
+use backend\models\business\Invoice;
+use backend\models\business\SellerHasInvoice;
+use backend\models\settings\Issuer;
+
+/* @var $invoice backend\models\business\Invoice */
+/* @var $items_invoice backend\models\business\ItemInvoice[] */
+
+if ($moneda == 'COLONES')
+    $simbolo = '¢';
+else
+    $simbolo = '$';
+
+if ($original === true)
+    $original = 'ORIGINAL';
+else
+    $original = 'COPIA';
+
+$issuer = Issuer::find()->one();
+?>
+<table width="100%">
+    <tr style="">
+        <td style="padding: 5px;" width="45%">
+            <span style="font-size: 12px;"><strong><?= !empty($issuer->name) ? $issuer->name : 'Herbavi' ?></strong></span><br />
+            <span style="font-size: 10px;">Identificación: <?= $issuer->identification ?></span><br />
+            <span style="font-size: 10px;">Dirección: <?= wordwrap( $issuer->address, 50 ) ?></span><br />
+            <span style="font-size: 10px;">Teléfono: <?= $issuer->phone ?></span><br />
+            <span style="font-size: 10px;">Correo: <?= $issuer->email ?></span><br />
+        </td>
+        <td width="10%" valign="top" style="padding-left: 5px; padding-right: 5px;"><?= $logo ?></td>
+        <td width="45%" style="text-align: right;">
+            <span style="font-size: 12px;"><strong><?= UtilsConstants::getPreInvoiceSelectType($invoice->invoice_type) ?> - <?= $original ?></strong></span><br />
+            <span style="font-size: 12px;"><strong>No: <?= $invoice->consecutive ?></strong></span><br />
+            <span style="font-size: 10px;"><strong>Clave numérica: </strong><?= $invoice->key ?></span><br />
+            <span style="font-size: 10px;"><strong><?= GlobalFunctions::formatDateToShowInSystem($invoice->emission_date) ?></strong></span><br />
+        </td>
+    </tr>
+</table>
+
+<div style="padding: 5px; border: solid 1px #E3E3E3;">
+    <table width="100%">
+        <tr>
+            <td width="5%" valign="top">
+                <span style="font-size: 10px;"><strong>CLIENTE: </strong></span><br/>
+            </td>
+            <td width="45%"  valign="top" style="padding-top: 1px;">
+                <span style="font-size: 10px;"><strong><?= $invoice->customer->name ?></strong></span><br />
+                <span style="font-size: 10px;">Identificación: <?= $invoice->customer->identification ?></span><br />
+                <span style="font-size: 10px;">Dirección: <?= wordwrap( $invoice->customer->address, 50 ) ?></span><br />
+                <span style="font-size: 10px;">Teléfono: <?= $invoice->customer->phone ?></span><br />
+                <span style="font-size: 10px;">Correo: <?= $invoice->customer->email ?></span><br />
+                <span style="font-size: 10px;">Condición de venta: <?= $invoice->conditionSale->name ?></span><br />
+                <?php
+                if($invoice->condition_sale_id == ConditionSale::getIdCreditConditionSale())
+                {
+                    echo '<span style="font-size: 10px;">Plazo crédito:'.$invoice->creditDays->name.'</span><br />';
+                }
+                ?>
+            </td>
+
+            <td width="45%" align="right" valign="top" style="padding: 5px;">
+
+                <span style="font-size: 10px;"><strong><?= Yii::t('backend','Estado').': </strong>'.UtilsConstants::getInvoiceStatusSelectType($invoice->status) ?></span><br/>
+                <span style="font-size: 10px;"><strong><?= Yii::t('backend','Sucursal').': </strong>'.$invoice->branchOffice->name ?></span><br/>
+                <span style="font-size: 10px;"><strong><?= Yii::t('backend','Vendedor').': </strong>'.SellerHasInvoice::getSellerStringByInvoice($invoice->id) ?></span><br/>
+                <br/>
+                <span style="font-size: 10px;"><strong><?= Yii::t('backend','Elaborado por').': </strong>'.User::getFullNameByActiveUser() ?></span><br/>
+                <span style="font-size: 10px;"><strong><?= Yii::t('backend','Fecha elaborado').': </strong>'.GlobalFunctions::formatDateToShowInSystem(date('Y-m-d')).' '.date('h:i a') ?></span><br/>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,671 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0 0 10px 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#conte {
+    width: 100%;
+    height: 100%;
+    background-color: #7010D9;
+}
+
+section,
+header,
+footer,
+nav,
+div,
+span,
+ul,
+li,
+a {
+    box-sizing: border-box;
+}
+
+
+/* header ******************************************************************/
+
+#header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #222;
+    color: #fff
+}
+
+header_nav {}
+
+sub_m {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #222;
+    color: #fff
+}
+
+
+/*  sections  ***********************************************/
+
+section {
+    float: left;
+    display: block;
+    height: 100%;
+    padding: 0 0 30px 0;
+    /*45px 5px 5px 5px;*/
+    margin: 0;
+}
+
+#section-section1 {
+    background: #ffffff;
+}
+
+#section-section2 {
+    background: #ffffff;
+    overflow-y: auto;
+    position: relative;
+}
+
+#section-section3 {
+    background: #ffffff
+}
+
+
+/*#section-section4 {
+    background: #c0392b;
+}*/
+
+
+/***************  PARTES ************************************/
+
+#uno {
+    position: relative;
+    background-color: #fafafa;
+    /*#eceff1*/
+    float: left;
+    /*width: 60%;*/
+    width: 50%;
+    min-height: 200px;
+    min-width: 425 !important;
+    padding: 0;
+}
+
+#dos {
+    position: relative;
+    background-color: #ffffff;
+    float: left;
+    /*width: 40%;*/
+    width: 50%;
+    min-height: 200px;
+    padding: 0 0 10px 0;
+}
+
+#bot_group {
+    padding: 0 0 15px 0;
+}
+
+#mbar_g {
+    overflow: auto;
+    margin: 0 0 60px 0;
+    padding: 0;
+    border: 0px solid #0f0;
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
+
+#mbar {
+    position: absolute;
+    top: 90px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
+
+#uno_in {
+    float: left;
+    padding: 0 !important;
+    /*px 0 100px 0;*/
+    padding-bottom: 50px;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+#tres {
+    background-color: #ffffff;
+    /*float: left;*/
+    padding: 40px 0 90px 0 !important;
+    /*px 0 100px 0;*/
+    margin: 0 !important;
+    width: 100%;
+    top: 90px;
+    bottom: 0px;
+    left: 0;
+}
+
+#cuatro {
+    background-color: #ffffff;
+    float: left;
+    padding: 40px 0 0 0;
+}
+
+.sub_bar,
+.sub_bar div a {
+    background-color: #dddddd;
+    padding: 10px 0 10px 0;
+    font-size: 9px;
+}
+
+.sub_bar div a {
+    color: #000;
+    text-decoration: none;
+}
+
+sub_bar2 {
+    padding-top: 10px;
+    background-color: #dddddd;
+}
+
+#uno_in table tbody tr {
+    cursor: pointer;
+}
+
+#prodContainer,
+#prodContainer2 {
+    width: 100%;
+    padding: 0;
+    padding-bottom: 300px;
+    max-height: 100%;
+}
+
+.prod,
+.prod2 {
+    width: 100px;
+    padding: 1px;
+    margin: 2px 0px 6px 0px;
+    float: left;
+    border: 1px solid #bbb;
+    min-height: 128px;
+    /*height: auto !important;**/
+    height: 128px;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-size: 11px !important;
+    font-weight: 800;
+    text-align: center;
+}
+
+
+/*************     ***********carrito - table ***********/
+
+#order,
+#order2 {
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 18px 0 80px 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#orderTable {
+    width: 96%;
+    margin: 4% 2% 3% 2%;
+    border: 1 px solid #888;
+}
+
+#orderTable2 {
+    width: 96%;
+    margin: 30px 2% 3% 2%;
+    border: 1px solid #888;
+}
+
+#orderTable toprow,
+orderTable2 toprow {
+    border: 1px solid #888;
+}
+
+#orderTable tr.toprow td {
+    border-bottom: 1px solid #555;
+    border: 1px solid #888;
+    background-color: #aaa;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#orderTable td {
+    background-color: #fafafa;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #555;
+}
+
+#orderTable button,
+#orderTable2 button {
+    margin: 3px;
+}
+
+#orderTotal {
+    width: 96%;
+    margin: 6% 2% 3% 2%;
+    padding: 3px 0;
+    border: 1px solid #888;
+    overflow: auto;
+    background-color: #eee;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/**** MODAL ****/
+
+#myModal {
+    /*top: 2%;*/
+    top: 0px;
+    outline: none;
+}
+
+.modal-header,
+h4,
+.close {
+    background-color: #5cb85c;
+    color: white !important;
+    text-align: center;
+    /*font-size: 30px;*/
+}
+
+.modal-footer {
+    background-color: #f9f9f9;
+}
+
+#lst_pre_o div {
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-xs {
+    width: 250px !important;
+}
+
+
+/********** NAV2 ************************************************************/
+
+.nav2 {
+    height: 100%;
+    width: 280px;
+    background-color: #333333;
+    /*#0a4a3c;*/
+    border-right: 2px solid #ccc;
+    left: 0;
+    top: 0;
+    z-index: 20000;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: translate(-280px, 0);
+    color: #ccc;
+    padding-top: 10px;
+}
+
+
+/* overlay layer */
+
+.ssm-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1;
+}
+
+.is-navOpen {
+    overflow: hidden;
+}
+
+div.mmn {
+    float: left;
+    padding: 1px !important;
+    margin: 9px;
+}
+
+.no-js body div div .mmn .ssm-toggle-nav .glyphicon.glyphicon-menu-hamburger {
+    color: #F1f1f1;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+#m-ssm-toggle {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ddd;
+}
+
+.mn_kebab {
+    float: left;
+    width: 79%;
+    text-align: right;
+    padding: 8px 1% 0 0;
+}
+
+.mn_side {
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.lst_side {
+    padding: 10px 0px;
+    list-style: none !important;
+    color: #ddd;
+    font-size: 14px;
+}
+
+.side_mn_tittle {
+    text-align: center;
+    padding-left: 8%;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 15px 0 20px 0;
+}
+
+.mn_side li a {
+    text-decoration: none;
+    color: #ddd;
+}
+
+.mn_side li {
+    padding: 15px 0 15px 20px;
+    border-bottom: 1px solid #999;
+}
+
+.mn_side li:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.mn_side li a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.ml_footer {
+    /*position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 279px;*/
+    margin: 0;
+    padding: 0 5px 30px 30px;
+}
+
+.btn.btn-square {
+    border-radius: 0;
+}
+
+#search_in:hover {
+    background-color: #e6e6e6;
+}
+
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+
+/* align glyph */
+
+.left-addon .glyphicon {
+    left: 0px;
+}
+
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+
+/* add padding  */
+
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+ul.lst_side a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+
+/****************MODAL***************/
+
+.mdal {}
+
+.mdal div {
+    padding: 1px 25px 20px 25px;
+}
+
+.row div input {
+    width: 100%;
+}
+
+.ln-s {
+    border-bottom: 3px solid #dddddd;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+form .row {
+    padding-top: 12px;
+}
+
+
+/**************************CARRO-GRANDE**********************************************/
+
+#cont {
+    padding: 14px;
+}
+
+#cont .row div {
+    padding: 10px;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+.mcab {
+    padding: 30px 10px 0px 10px !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+.tbl-prod {
+    max-width: 500px;
+    padding-top: 30px;
+}
+
+.tbl-prod thead td {
+    font-weight: 700;
+}
+
+
+/**********************CAJAS********************************************/
+
+#mavis {
+    font-style: italic;
+    color: #999;
+    font-size: 12px
+}
+
+#cntr1 {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.cntr2 {
+    font-weight: 500;
+    border-top: 1px dashed #999999;
+}
+
+#drtf3 {
+    width: 100%;
+}
+
+#drtf3 tr div {
+    padding: 10px;
+}
+
+#drtf3 caption {
+    font-style: italic;
+}
+
+#mt4 {
+    font-weight: 700;
+}
+
+
+/****************LOGIN************************************************/
+
+.login-panel {
+    margin-top: 10%;
+    border: 1px solid #000000 !important;
+}
+
+
+/****************OTROS******************/
+
+.roj {
+    color: #DB0C0F;
+}
+
+
+/**************** Teclado de modal ******************/
+
+.f_table_teclado tr td {
+    background: #828282;
+    color: #FFF;
+    padding: 20px 36px;
+    cursor: default;
+    border-radius: 3px;
+    font-family: sans-serif;
+    border: 1px solid #757575;
+    max-width: 10px;
+    position: relative;
+    font-size: 18px;
+    font-weight: 700;
+    min-width: 40px;
+    min-height: 35px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.f_table_teclado tr td:hover {
+    background: #525252;
+}
+
+.f_btn_delete {
+    position: absolute;
+    left: .1em;
+    bottom: .1em;
+    width: 19px;
+}
+
+#f_barra_x {
+    text-align: right;
+    padding: 12px 12px;
+    font-size: 24px;
+}
+
+.spinner {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    background: url(loading.gif);
+    background-size: 100%;
+    z-index: 10000;
+}
+
+.mleft {
+    margin-left: 5px;
+}
+
+
+/* style sheet for "Tiquete" printing */
+
+@media print and (width: 8cm) and (height: 100cm) {
+    @page {
+        margin: 0.5cm;
+    }
+}
+
+.resumen {
+    font-size: 16px;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #DCE6F1;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+    background-color: #FFFFFF;
+}
+
+.table-striped>thead>tr>th {
+    background-color: #4F81BD;
+}
+
+
+/* style sheet for "A4" printing */
+
+
+/*@media print and (width: 21cm) and (height: 29.7cm) {
+    @page {
+        margin: 3cm;
+    }
+}
+*/
+
+
+/* style sheet for "letter" printing */
+
+
+/*
+@media print and (width: 8.5in) and (height: 11in) {
+    @page {
+        margin: 1in;
+    }
+}
+*/
+
+
+/* A4 Landscape*/
+
+
+/*
+@page {
+    size: A4 landscape;
+    margin: 10%;
+}
+*/

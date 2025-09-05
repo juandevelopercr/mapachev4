@@ -1,0 +1,59 @@
+# Yii2 stuff
+/vendor/
+/runtime/
+/web/assets/
+/web/uploads/
+_DOCUMENTOS
+
+# Composer
+/composer.lock
+/composer.phar
+
+# User-specific stuff
+/nbproject/
+/.idea/
+/.vscode/
+
+/yii
+/yii_test
+/yii_test.bat
+*txt
+# ignore generated files
+frontend/web/index.php
+frontend/web/index-test.php
+frontend/web/robots.txt
+backend/web/index.php
+backend/web/index-test.php
+backend/web/robots.txt
+
+# ignore cache assets files
+frontend/web/assets/*
+backend/web/assets/*
+backend/runtime/*
+frontend/runtime/*
+console/runtime/*
+
+# local files
+backend/config/main-local.php
+backend/config/params-local.php
+backend/config/test-local.php
+common/config/main-local.php
+common/config/params-local.php
+common/config/test-local.php
+common/config/codeception-local.php
+common/models/GlobalFunctions.php
+console/config/main-local.php
+console/config/params-local.php
+console/config/test-local.php
+frontend/config/main-local.php
+frontend/config/params-local.php
+frontend/config/test-local.php
+
+sendmail.php
+testdb.php
+
+
+# Ignore uploads
+backend/web/uploads/*
+db/*
+*.sql
