@@ -12,6 +12,7 @@ class ApiBCCR
     public static function getChangeValueFromApiBccr()
     {
         $valor = false;
+        
         $indicador = "318";
         $FechaInicio = date('Y/m/d');
         $FechaFinal = date('Y/m/d');
