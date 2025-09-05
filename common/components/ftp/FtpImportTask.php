@@ -29,7 +29,7 @@ class FtpImportTask
         $ftpService = null; // Inicializar $ftpService a null
         
         $remoteDirectory = '/'; // Carpeta en el FTP
-
+        
         if ($useLocalDirectory) {          
             $localDirectory = Yii::getAlias('@webroot/uploads/files'); // Carpeta local para leer los archivos            
             $downloadedFiles = $this->getFilesFromLocalDirectory($localDirectory);            
@@ -54,7 +54,7 @@ class FtpImportTask
             $fileInfo = pathinfo($file);
             if ($fileInfo['extension'] == 'pdf') {
                 // Debug message
-                Yii::info('Procesando archivo PDF: ' . $file, 'application');
+                Yii::info('Procesando archivo PDF: ' . $file, 'application');                            
                 $result = $dataProcessor->processPdfData($file);    
                 Yii::info('Resultado del Proceso: '. $result, 'application');            
                 $this->deleteFile($file, $useLocalDirectory, $ftpService, $remoteDirectory);                                

@@ -1623,7 +1623,6 @@ class InvoiceController extends Controller
         $ftpHost = $emisor->ftp_host;
         $ftpUser = $emisor->ftp_user;
         $ftpPass = $emisor->ftp_password;
-
         try {
             $ftpImportTask = new FtpImportTask($ftpHost, $ftpUser, $ftpPass);
             $ftpImportTask->run(true);

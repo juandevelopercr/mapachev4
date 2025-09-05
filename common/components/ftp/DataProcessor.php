@@ -62,7 +62,7 @@ class DataProcessor
         $filteredData = $filteredLines;
 
         //Yii::info('Datos filtrados del PDF: ' . implode("\n", $filteredData),  'application');
-        
+            
         $invoiceNumber = NULL;
         // Procesar las líneas filtradas y buscar el número de contrato
         foreach ($filteredData as $line) {
