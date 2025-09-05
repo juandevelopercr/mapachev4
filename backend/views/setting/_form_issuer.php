@@ -370,7 +370,7 @@ use kartik\depdrop\DepDrop;
                 'pluginOptions'=> [
                     'browseIcon'=>'<i class="fa fa-camera"></i> ',
                     'browseLabel'=> Yii::t('backend','Cambiar'),
-                    'allowedFileExtensions'=>['p12'],
+                    'allowedFileExtensions'=>['pem'],
                     'defaultPreviewContent'=> $preview_cert,
                     'showUpload'=> false,
                     'layoutTemplates'=> [

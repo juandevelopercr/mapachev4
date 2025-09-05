@@ -30,8 +30,6 @@ class ApiEnvioHacienda
 		}
 		else
         {
-			//$url_api = 'https://api.comprobanteselectronicos.go.cr/recepcion-sandbox/v1/recepcion/';
-			//$url_api = 'https://api.comprobanteselectronicos.go.cr/recepcion-sandbox/v1/';
 			$url_api = 'https://api-sandbox.comprobanteselectronicos.go.cr/recepcion/v1/recepcion/';
 		}		
 				
@@ -118,7 +116,7 @@ class ApiEnvioHacienda
 			$url_api = 	'https://api.comprobanteselectronicos.go.cr/recepcion/v1/recepcion/';
 		}
 		else{
-			$url_api = 	'https://api.comprobanteselectronicos.go.cr/recepcion-sandbox/v1/recepcion/';
+			$url_api = 	'https://api-sandbox.comprobanteselectronicos.go.cr/recepcion/v1/recepcion/';
 		}		
 
 		$client = new Client([

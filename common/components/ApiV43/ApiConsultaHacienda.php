@@ -38,8 +38,6 @@ class ApiConsultaHacienda
 		}
 		else
 		{
-			//$url = 'https://api.comprobanteselectronicos.go.cr/recepcion-sandbox/v1/recepcion/';
-			//$url = 'https://api.comprobanteselectronicos.go.cr/recepcion-sandbox/v1/';
 			$url = 'https://api-sandbox.comprobanteselectronicos.go.cr/recepcion/v1/recepcion/';
 		}		
 		
