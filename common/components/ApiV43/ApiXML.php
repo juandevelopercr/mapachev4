@@ -313,8 +313,10 @@ class ApiXML
             $nodo = $doc->createElement('UnidadMedida', $unit_type_code);
             $linea->appendChild($nodo);   
 
-            $nodo = $doc->createElement('TipoTransaccion', '01');
-            $linea->appendChild($nodo);   
+            if ($factura->invoice_type == UtilsConstants::PRE_INVOICE_TYPE_INVOICE){
+                $nodo = $doc->createElement('TipoTransaccion', '01');
+                $linea->appendChild($nodo);   
+            }    
             
 			$str = $fdetalle->description;
 
