@@ -517,7 +517,7 @@ class ApiXML
         $paymentMethods = PaymentMethodHasInvoice::find()->where(['invoice_id' => $factura->id])->all();
 
         $medioPago = $doc->createElement('MedioPago');
-        $resumen->appendChild($codigo);
+        $resumen->appendChild($medioPago);
         
         $nodo = $doc->createElement('TipoMedioPago', $paymentMethods[0]->paymentMethod->code);
         $medioPago->appendChild($nodo);
