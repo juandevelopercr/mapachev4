@@ -654,6 +654,8 @@ class Invoice extends BaseModel
         $emisor = Issuer::find()->one();
         $logo = "<img src=\"" . GlobalFunctions::BASE_URL. Setting::getUrlLogoBySettingAndType(2, Setting::SETTING_ID) . "\" width=\"165\"/>";        
 
+        die(var_dump($logo));
+
         $mailer = Yii::$app->mail->compose(['html' => 'notification-invoice-html'], [
                 'logo'=>$logo,
                 'key'=>$this->key,

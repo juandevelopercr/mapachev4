@@ -92,6 +92,11 @@ class ApiXML
 		$nodo = $doc->createElement('CodigoActividadEmisor', $emisor->code_economic_activity);
 		$root->appendChild($nodo);
 
+        if ($factura->customer->economicActivity) {
+            $nodo = $doc->createElement('CodigoActividadReceptor', $factura->customer->economicActivity);
+            $root->appendChild($nodo);
+        }        
+
 		$nodo = $doc->createElement('NumeroConsecutivo', $factura->consecutive);
 		$root->appendChild($nodo);
 		
@@ -589,14 +594,9 @@ class ApiXML
         
 		$nodo = $doc->createElement('CodigoActividadEmisor', $emisor->code_economic_activity);
 		$root->appendChild($nodo);
-
-        if ($factura->customer->code_economic_activity) {
-            $nodo = $doc->createElement('CodigoActividadReceptor', $factura->customer->code_economic_activity);
-            $root->appendChild($nodo);
-        }
-
-        if ($factura->customer->code_economic_activity) {
-            $nodo = $doc->createElement('CodigoActividadReceptor', $factura->customer->code_economic_activity);
+        
+        if ($factura->customer->economicActivity) {
+            $nodo = $doc->createElement('CodigoActividadReceptor', $factura->customer->economicActivity);
             $root->appendChild($nodo);
         }
 
