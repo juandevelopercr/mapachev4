@@ -405,8 +405,6 @@ class Setting extends BaseModel
                 }
         }
 
-        die(var_dump($path_return));
-
         return $path_return;
     }
 
