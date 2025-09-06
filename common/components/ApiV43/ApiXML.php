@@ -281,8 +281,7 @@ class ApiXML
 		
 			$nodo = $doc->createElement('NumeroLinea', $i);
 			$linea->appendChild($nodo);
-
-            /*
+            
 			if (!is_null($fdetalle->product_id) && !empty($fdetalle->product_id))
 			{
 				$nodo = $doc->createElement('Codigo', $fdetalle->product->cabys->code);
@@ -291,10 +290,9 @@ class ApiXML
             else
             if (!is_null($fdetalle->service_id) && !empty($fdetalle->service_id))
 			{
-				$nodo = $doc->createElement('Codigo', $fdetalle->service->cabys->code);
+				$nodo = $doc->createElement('CodigoCABYS', $fdetalle->service->cabys->code);
 				$linea->appendChild($nodo);
 			}
-            */    
 			
 			$codigo = $doc->createElement('CodigoComercial');
 			$linea->appendChild($codigo);
