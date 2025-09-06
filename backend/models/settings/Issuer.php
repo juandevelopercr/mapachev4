@@ -101,7 +101,7 @@ class Issuer extends BaseModel
             [['identification_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => IdentificationType::className(), 'targetAttribute' => ['identification_type_id' => 'id']],
             [['province_id'], 'exist', 'skipOnError' => true, 'targetClass' => Province::className(), 'targetAttribute' => ['province_id' => 'id']],
             [['logo_file'], 'file', 'extensions' => implode(',', GlobalFunctions::getImageFormats())],
-            [['certificate_digital_file',], 'file', 'extensions' => 'pem'],
+            [['certificate_digital_file',], 'file', 'extensions' => 'p12'],
         ];
     }
 
