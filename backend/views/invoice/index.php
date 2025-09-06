@@ -149,7 +149,7 @@ $custom_buttons = [
         ];
 
         $url_xml_hacienda_verificar = Yii::getAlias('@backend/web/uploads/xmlh/' . $model->key . '_respuesta.xml');
-        $url = Yii::getAlias('/backend/web/uploads/xmlh/FE-MH-' . $model->key . '.xml');
+        $url = Yii::getAlias('/backend/web/uploads/xmlh/' . $model->key . '_respuesta.xml');
         if (file_exists($url_xml_hacienda_verificar)) {
             return Html::a('<i class="fa fa-file-text"></i>', $url, $options);
         }
