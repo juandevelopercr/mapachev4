@@ -652,9 +652,7 @@ class Invoice extends BaseModel
         //$subject = Yii::t('backend', 'Factura electrónica #' . $this->consecutive);
         //$email_cc = UtilsConstants::getListaEmailsByEmailString($this->customer->email_cc);
         $emisor = Issuer::find()->one();
-        $logo = "<img src=\"" . GlobalFunctions::BASE_URL. Setting::getUrlLogoBySettingAndType(2, Setting::SETTING_ID) . "\" width=\"165\"/>";        
-
-        die(var_dump(GlobalFunctions::BASE_URL. Setting::getUrlLogoBySettingAndType(2, Setting::SETTING_ID)));
+        $logo = "<img src=\"" . GlobalFunctions::BASE_URL. Setting::getUrlLogoBySettingAndType(2, Setting::SETTING_ID) . "\" width=\"165\"/>";                
 
         $mailer = Yii::$app->mail->compose(['html' => 'notification-invoice-html'], [
                 'logo'=>$logo,
