@@ -57,9 +57,7 @@ class ApiAccess
 					  'client_secret' => '',//always empty
 					  'scopes' =>''
 				])		
-				->send();	
-
-				die(var_dump($response));
+				->send();					
 		} 
 		catch (\Exception $e) {			
 			$error = 1;
@@ -87,7 +85,6 @@ class ApiAccess
 			$error = 1;			
 			try {
 				$data = Json::decode($response->content);
-				die(var_dump($data));
 				$errorcode = $data['error'];
 				if ($errorcode == 'invalid_grant')
 				{
