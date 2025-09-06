@@ -672,7 +672,7 @@ class Invoice extends BaseModel
             //->attach($file_pdf, ['fileName' => 'Factura_' . $this->consecutive]);
 
         // Adjuntar PDF
-        $nombrearchivo = 'FE-' . $this->key . '.pdf';
+        $nombrearchivo = $this->key . '.pdf';
         $archivo = $this->getInvoicePdf($this->id, true, 'COLONES', $destino = 'file', $nombrearchivo);        
         if (!empty($archivo)) {
             $mailer->attach($archivo, ['fileName' => $nombrearchivo]);
@@ -695,14 +695,14 @@ class Invoice extends BaseModel
 
         $xml = base64_decode($xmlFirmado);
 
-        $nombre_archivo = 'FE-' . $invoice->key . '.xml';
+        $nombre_archivo = $invoice->key . '.xml';
         // create attachment on-the-fly
         $mailer->attachContent($xml, ['fileName' => $nombre_archivo, 'contentType' => 'text/plain']);
 
 
         // Adjuntar XML de respuesta de Hacienda si existe
         $url_xml_hacienda_verificar = Yii::getAlias('@backend/web/uploads/xmlh/FE-MH-' . $invoice->key . '.xml');
-        $nombre_archivo = 'FE-MH' . $invoice->key . '.xml';
+        $nombre_archivo = $invoice->key . '_respuesta.xml';
         if (file_exists($url_xml_hacienda_verificar))
             $mailer->attach($url_xml_hacienda_verificar, ['fileName' => $nombre_archivo]);
 

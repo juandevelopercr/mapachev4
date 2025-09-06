@@ -831,7 +831,7 @@ class InvoiceController extends Controller
         $response->format = \yii\web\Response::FORMAT_RAW;
         $headers = Yii::$app->response->headers;
         $headers->add('Content-Type', 'text/xml');
-        $headers->add('Content-Disposition', 'attachment; filename=' . 'FE-' . $invoice->key . ".xml");
+        $headers->add('Content-Disposition', 'attachment; filename=' . $invoice->key . ".xml");
         return $xml;
     }
 

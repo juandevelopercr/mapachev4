@@ -44,7 +44,7 @@ class ApiXML
                
 		$doc  = new \DomDocument('1.0','UTF-8');
 		$doc->formatOutput = true;
-
+        
         if ($factura->invoice_type == UtilsConstants::PRE_INVOICE_TYPE_INVOICE){
             $root = $doc->createElementNS(
                 'https://cdn.comprobanteselectronicos.go.cr/xml-schemas/v4.4/facturaElectronica','FacturaElectronica');
@@ -158,74 +158,77 @@ class ApiXML
 		
 		
 		// Datos Receptor
-		$receptor = $doc->createElement('Receptor');
-		$root->appendChild($receptor);
-		
-		$nodo = $doc->createElement('Nombre', htmlspecialchars($factura->customer->name));
-		$receptor->appendChild($nodo);
-
-    
-        $campo_tipo_identificacion = trim($factura->customer->identificationType->code);
-        $campo_identificacion = trim($factura->customer->identification);
-
-        $identificacion = $doc->createElement('Identificacion');
-        $receptor->appendChild($identificacion);
-
-        $nodo = $doc->createElement('Tipo', $campo_tipo_identificacion);
-        $identificacion->appendChild($nodo);
-
-        $nodo = $doc->createElement('Numero', $campo_identificacion);
-        $identificacion->appendChild($nodo);    
-
-		/*
-		if (!is_null($factura->customer->commercial_name) && !empty($factura->customer->commercial_name))
-		{
-			$nodo = $doc->createElement('NombreComercial', htmlspecialchars($factura->customer->commercial_name));
-			$receptor->appendChild($nodo);
-		}
-        */    
-		
-		if (!is_null($factura->customer->province_id) && !is_null($factura->customer->canton_id) && !is_null($factura->customer->disctrict_id))
-		{
-			$ubicacion = $doc->createElement('Ubicacion');
-			$receptor->appendChild($ubicacion);
-			
-			$nodo = $doc->createElement('Provincia', $factura->customer->province->code);
-			$ubicacion->appendChild($nodo);
-			
-			$nodo = $doc->createElement('Canton', str_pad($factura->customer->canton->code, 2, '0', STR_PAD_LEFT));
-			$ubicacion->appendChild($nodo);
-			
-			$nodo = $doc->createElement('Distrito', str_pad($factura->customer->disctrict->code, 2, '0', STR_PAD_LEFT));
-			$ubicacion->appendChild($nodo);
-			
-			if (!is_null($factura->customer->other_signs) && !empty($factura->customer->other_signs)){
-				$nodo = $doc->createElement('OtrasSenas', htmlspecialchars($factura->customer->other_signs));
-				$ubicacion->appendChild($nodo);		
-			}
-			else
-			{
-				$nodo = $doc->createElement('OtrasSenas', 'Otras Señas');
-				$ubicacion->appendChild($nodo);
-			}
-		}
-		
-		if (!is_null($factura->customer->country_code_phone) && !empty($factura->customer->country_code_phone) && !is_null($factura->customer->phone) && !empty($factura->customer->phone)){
-			$telefono = $doc->createElement('Telefono');
-			$receptor->appendChild($telefono);
-		
-			$nodo = $doc->createElement('CodigoPais', $factura->customer->country_code_phone);
-			$telefono->appendChild($nodo);
-		
-			$nodo = $doc->createElement('NumTelefono', $factura->customer->phone);
-			$telefono->appendChild($nodo);
-		}
-		
-		
-        if (!is_null($factura->customer->email) && !empty($factura->customer->email))
+        if ($factura->invoice_type == UtilsConstants::PRE_INVOICE_TYPE_INVOICE)
         {
-		    $nodo = $doc->createElement('CorreoElectronico', $factura->customer->email);
-		    $receptor->appendChild($nodo);
+            $receptor = $doc->createElement('Receptor');
+            $root->appendChild($receptor);
+            
+            $nodo = $doc->createElement('Nombre', htmlspecialchars($factura->customer->name));
+            $receptor->appendChild($nodo);
+
+        
+            $campo_tipo_identificacion = trim($factura->customer->identificationType->code);
+            $campo_identificacion = trim($factura->customer->identification);
+
+            $identificacion = $doc->createElement('Identificacion');
+            $receptor->appendChild($identificacion);
+
+            $nodo = $doc->createElement('Tipo', $campo_tipo_identificacion);
+            $identificacion->appendChild($nodo);
+
+            $nodo = $doc->createElement('Numero', $campo_identificacion);
+            $identificacion->appendChild($nodo);    
+
+            /*
+            if (!is_null($factura->customer->commercial_name) && !empty($factura->customer->commercial_name))
+            {
+                $nodo = $doc->createElement('NombreComercial', htmlspecialchars($factura->customer->commercial_name));
+                $receptor->appendChild($nodo);
+            }
+            */    
+            
+            if (!is_null($factura->customer->province_id) && !is_null($factura->customer->canton_id) && !is_null($factura->customer->disctrict_id))
+            {
+                $ubicacion = $doc->createElement('Ubicacion');
+                $receptor->appendChild($ubicacion);
+                
+                $nodo = $doc->createElement('Provincia', $factura->customer->province->code);
+                $ubicacion->appendChild($nodo);
+                
+                $nodo = $doc->createElement('Canton', str_pad($factura->customer->canton->code, 2, '0', STR_PAD_LEFT));
+                $ubicacion->appendChild($nodo);
+                
+                $nodo = $doc->createElement('Distrito', str_pad($factura->customer->disctrict->code, 2, '0', STR_PAD_LEFT));
+                $ubicacion->appendChild($nodo);
+                
+                if (!is_null($factura->customer->other_signs) && !empty($factura->customer->other_signs)){
+                    $nodo = $doc->createElement('OtrasSenas', htmlspecialchars($factura->customer->other_signs));
+                    $ubicacion->appendChild($nodo);		
+                }
+                else
+                {
+                    $nodo = $doc->createElement('OtrasSenas', 'Otras Señas');
+                    $ubicacion->appendChild($nodo);
+                }
+            }
+            
+            if (!is_null($factura->customer->country_code_phone) && !empty($factura->customer->country_code_phone) && !is_null($factura->customer->phone) && !empty($factura->customer->phone)){
+                $telefono = $doc->createElement('Telefono');
+                $receptor->appendChild($telefono);
+            
+                $nodo = $doc->createElement('CodigoPais', $factura->customer->country_code_phone);
+                $telefono->appendChild($nodo);
+            
+                $nodo = $doc->createElement('NumTelefono', $factura->customer->phone);
+                $telefono->appendChild($nodo);
+            }
+            
+            
+            if (!is_null($factura->customer->email) && !empty($factura->customer->email))
+            {
+                $nodo = $doc->createElement('CorreoElectronico', $factura->customer->email);
+                $receptor->appendChild($nodo);
+            }
         }
 
 		// Otros elementos
@@ -483,9 +486,10 @@ class ApiXML
 		$nodo = $doc->createElement('TotalVentaNeta', number_format($factura->totalVentaNeta, 5, '.', ''));
 		$resumen->appendChild($nodo);
 
+
         
         $desglose = $doc->createElement('TotalDesgloseImpuesto');
-		$resumen->appendChild($codigo);
+		$resumen->appendChild($desglose);
 		
 		$nodo = $doc->createElement('Codigo', $fdetalle->taxType->code);
 		$desglose->appendChild($nodo);
@@ -497,6 +501,8 @@ class ApiXML
         
         $nodo = $doc->createElement('TotalMontoImpuesto', $factura->totalImpuesto);
 		$desglose->appendChild($nodo);
+
+        
 
 		$nodo = $doc->createElement('TotalImpuesto', number_format($factura->totalImpuesto, 5, '.', ''));
 		$resumen->appendChild($nodo);

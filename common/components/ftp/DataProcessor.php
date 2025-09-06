@@ -437,7 +437,6 @@ class DataProcessor
             $customer->attributes = $cliente_contado->attributes;
             $customer->code = $customer->generateCode();
             $customer->name = $cliente_contado->name . ' - '.  $name;                        
-            
             /*
             if (!empty($pais) && strtoupper($pais) != 'CRI'){  // Es extranjero
                 $customer->foreign_identification = $identification;

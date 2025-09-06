@@ -713,7 +713,7 @@ class InvoiceController extends Controller
         $response->format = \yii\web\Response::FORMAT_RAW;
         $headers = Yii::$app->response->headers;
         $headers->add('Content-Type', 'text/xml');
-        $headers->add('Content-Disposition', 'attachment; filename='.'FE-'.$invoice->key.".xml");
+        $headers->add('Content-Disposition', 'attachment; filename='.$invoice->key.".xml");
         return $xml;
     }
 
@@ -926,7 +926,7 @@ class InvoiceController extends Controller
                 ->setHtmlBody($body_html);
 
             // Adjuntar PDF
-            $nombrearchivo = 'FE-'.$factura->key.'.pdf';
+            $nombrearchivo = $factura->key.'.pdf';
             $archivo = '';
             $listid[] = $factura->id;
             $archivo = $this->showPdf($listid, true, 'COLONES','file', $nombrearchivo);
@@ -952,7 +952,7 @@ class InvoiceController extends Controller
 
             $xml = base64_decode($xmlFirmado);
 
-            $nombre_archivo = 'FE-'.$factura->key.'.xml';
+            $nombre_archivo = $factura->key.'.xml';
             // create attachment on-the-fly
             $mensage->attachContent($xml, ['fileName' => $nombre_archivo, 'contentType' => 'text/plain']);
 

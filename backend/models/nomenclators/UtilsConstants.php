@@ -1154,7 +1154,7 @@ class UtilsConstants
                 //->attach($file_pdf, ['fileName' => 'Factura_' . $this->consecutive]);
 
                 // Adjuntar PDF
-                $nombrearchivo = 'FE-' . $invoice->key . '.pdf';
+                $nombrearchivo = $invoice->key . '.pdf';
                 $archivo = $invoice->getInvoicePdf($invoice->id, true, 'COLONES', $destino = 'file', $nombrearchivo);
                 if (!empty($archivo)) {
                     $mailer->attach($archivo, ['fileName' => $nombrearchivo]);
@@ -1177,7 +1177,7 @@ class UtilsConstants
 
                 $xml = base64_decode($xmlFirmado);
 
-                $nombre_archivo = 'FE-' . $invoice->key . '.xml';
+                $nombre_archivo = $invoice->key . '.xml';
                 // create attachment on-the-fly
                 $mailer->attachContent($xml, ['fileName' => $nombre_archivo, 'contentType' => 'text/plain']);
 
