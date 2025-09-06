@@ -98,9 +98,12 @@ class ApiEnvioHacienda
 										  'callbackUrl' => $callbackurl,
 										  'comprobanteXml' => $facturaXML
 									  ])		
-							   ->send();							   
+							   ->send();		
+							   
+							   die(var_dump($response));
 		} 
 		catch (InvalidParamException $e){
+			die(var_dump($response));
 			$error = 1;
 			$mensaje = "Ha ocurrido un error al tratar de enviar ".$documento." electrónica a la API de Hacienda. Inténtento nuevamente 	y si el error persiste póngase en contacto con el administrador del sistema";
 			$type = 'danger';

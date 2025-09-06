@@ -875,7 +875,7 @@ class Invoice extends BaseModel
                 if ($status_hacienda == 'rechazado') {
                     self::setStatusHacienda($invoice->id, UtilsConstants::HACIENDA_STATUS_REJECTED); // Rechazada
 
-                    $xml_filename = 'FE-MH-' . $invoice->key . '.xml';
+                    $xml_filename = $invoice->key . '_respuesta.xml';
                     $path = Yii::getAlias('@backend/web/uploads/xmlh/' . $xml_filename);
                     file_put_contents($path, $xml_response_hacienda_decode);
                     $invoice->response_xml = $path;
@@ -886,7 +886,7 @@ class Invoice extends BaseModel
                     //if ($invoice->status_hacienda != UtilsConstants::HACIENDA_STATUS_ACCEPTED)
                     if ($invoice->status_hacienda == UtilsConstants::HACIENDA_STATUS_RECEIVED)                    
                     {
-                        $xml_filename = 'FE-MH-' . $invoice->key . '.xml';
+                        $xml_filename = $invoice->key . '_respuesta.xml';
                         $path = Yii::getAlias('@backend/web/uploads/xmlh/' . $xml_filename);
                         file_put_contents($path, $xml_response_hacienda_decode);
                         $invoice->response_xml = $xml_filename;
@@ -1075,4 +1075,42 @@ class Invoice extends BaseModel
             ->all();
         return $ventas;
     }
+
+  public function getDesgloseImpuesto()
+  {
+    $items = ItemInvoice::findAll(['invoice_id' => $this->id]);
+    $nodoDesgloseImpuesto = [];
+
+    if ($this->currency_id === Currency::getCurrencyIdByCode('USD'))    
+        $strmoneda = 'DOLARES';    
+    else    
+        $strmoneda = 'COLONES';    
+
+    // Agrupar impuestos por código y tarifa
+    $impuestosAgrupados = [];
+    foreach ($items as $desglose) {        
+      $clave = $desglose->taxType->code . '|' . $desglose->taxRateType->code;
+
+      if (!isset($impuestosAgrupados[$clave])) {
+        $impuestosAgrupados[$clave] = [
+          'codigo' => $desglose->taxType->code,
+          'tarifa' => $desglose->taxRateType->code,
+          'total' => 0
+        ];
+      }
+      $montoImpuesto = $desglose->getMontoImpuesto($strmoneda);
+
+      $impuestosAgrupados[$clave]['total'] += $montoImpuesto;
+    }
+
+    // Crear nodos agrupados
+    foreach ($impuestosAgrupados as $impuesto) {      
+      $nodoDesgloseImpuesto [] = [
+        'Codigo' => $impuesto['codigo'],
+        'CodigoTarifaIVA' => $impuesto['tarifa'],
+        'TotalMontoImpuesto'=> number_format($impuesto['total'], 5, '.', '')
+      ];      
+    }
+    return $nodoDesgloseImpuesto;
+  }
 }

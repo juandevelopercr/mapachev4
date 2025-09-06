@@ -1013,7 +1013,7 @@ class InvoiceTpvController extends Controller
 
             // Adjuntar XML de respuesta de Hacienda si existe
             $url_xml_hacienda_verificar = Yii::getAlias('@backend/web/uploads/xmlh/FE-MH-'.$factura->key.'.xml');
-            $nombre_archivo = 'FE-MH'.$factura->key.'.xml';
+            $nombre_archivo = $factura->key.'_respuesta.xml';
             if (file_exists($url_xml_hacienda_verificar))
                 $mensage->attach($url_xml_hacienda_verificar, ['fileName' => $nombre_archivo]);
 

@@ -590,7 +590,7 @@ class Apihaciendacr {
 				$mensaje = "El comprobante electrónico con clave: [".$factura->clave."] fue rechazado por Hacienda. <br >Por la siguiente causa ". $xml_respuesta_hacienda.'<br >Revise el archivo xml de respuesta de Hacienda para más detalles';
 
 				// Crear el xml de respuesta
-				$nombre_archivo = 'FE-MH-'.$factura->clave.'.xml';
+				$nombre_archivo = $factura->clave.'_respuesta.xml';
 				$path = Yii::getAlias('@backend/web/xmlh/'.$nombre_archivo);
 				file_put_contents($path, $xml_respuesta_hacienda);
 				$factura->respuesta_xml = $path;
@@ -615,7 +615,7 @@ class Apihaciendacr {
 				
 				$xml_respuesta_hacienda = base64_decode($data['respuesta-xml']);
 				// Crear el xml de respuesta
-				$nombre_archivo = 'FE-MH-'.$factura->clave.'.xml';
+				$nombre_archivo = $factura->clave.'_respuesta.xml';
 				$path = Yii::getAlias('@backend/web/xmlh/'.$nombre_archivo);
 				file_put_contents($path, $xml_respuesta_hacienda);
 				$factura->respuesta_xml = $nombre_archivo;				

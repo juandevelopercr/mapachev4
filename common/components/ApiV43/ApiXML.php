@@ -486,23 +486,21 @@ class ApiXML
 		$nodo = $doc->createElement('TotalVentaNeta', number_format($factura->totalVentaNeta, 5, '.', ''));
 		$resumen->appendChild($nodo);
 
-
+        $desgloseImpuestos = $factura->getDesgloseImpuesto();        
         
-        $desglose = $doc->createElement('TotalDesgloseImpuesto');
-		$resumen->appendChild($desglose);
-		
-		$nodo = $doc->createElement('Codigo', $fdetalle->taxType->code);
-		$desglose->appendChild($nodo);
+        foreach ($desgloseImpuestos as $d){
+            $desglose = $doc->createElement('TotalDesgloseImpuesto');
+            $resumen->appendChild($desglose);
+            
+            $nodo = $doc->createElement('Codigo', $d['Codigo']);
+            $desglose->appendChild($nodo);
 
-        $tax_rate_type_code = (isset($fdetalle->taxRateType->code) && !empty($fdetalle->taxRateType->code))? $fdetalle->taxRateType->code : 0;
-
-        $nodo = $doc->createElement('CodigoTarifaIVA', $tax_rate_type_code);
-		$desglose->appendChild($nodo);
-        
-        $nodo = $doc->createElement('TotalMontoImpuesto', $factura->totalImpuesto);
-		$desglose->appendChild($nodo);
-
-        
+            $nodo = $doc->createElement('CodigoTarifaIVA', $d['CodigoTarifaIVA']);
+            $desglose->appendChild($nodo);
+            
+            $nodo = $doc->createElement('TotalMontoImpuesto', $d['TotalMontoImpuesto']);
+            $desglose->appendChild($nodo);
+        }
 
 		$nodo = $doc->createElement('TotalImpuesto', number_format($factura->totalImpuesto, 5, '.', ''));
 		$resumen->appendChild($nodo);
