@@ -35,7 +35,6 @@ use yii\helpers\Html;
  * @property string|null $updated_at
  * @property int|null $identification_type_id
  * @property string|null $identification
- * @property string|null $foreign_identification
  * @property int|null $customer_type_id
  * @property int|null $customer_classification_id
  * @property string|null $country_code_phone
@@ -102,18 +101,17 @@ class Customer extends BaseModel
             ['email','email'],
             ['email','trim'],
             [['email', 'email_cc'], 'string', 'max' => 255],
+            [['economicActivity'], 'string', 'max' => 20],            
             ['email_cc','trim'],  
             
             // Validación de unicidad para el campo `identification`
             ['identification', 'unique', 'message' => 'La identificación ya ha sido registrada.'],
             
-            // Validación de unicidad para el campo `foreign_identification`
-            ['foreign_identification', 'unique', 'message' => 'La identificación extranjera ya ha sido registrada.'],
 
             [['status', 'identification_type_id', 'customer_type_id', 'customer_classification_id', 'province_id', 'canton_id', 'disctrict_id', 'condition_sale_id', 'credit_days_id', 'enable_credit_max', 'price_assigned', 'is_exonerate', 'exoneration_document_type_id','route_transport_id','pre_invoice_type'], 'integer'],
             [['created_at', 'updated_at', 'exoneration_date', 'sellers', 'collectors'], 'safe'],
             [['credit_amount_colon', 'credit_amount_usd', 'exoneration_purchase_percent'], 'number'],
-            [['name', 'commercial_name', 'code', 'identification', 'foreign_identification', 'country_code_phone', 'phone', 'country_code_fax', 'fax', 'email', 'address', 'other_signs', 'number_exoneration_doc', 'name_institution_exoneration'], 'string', 'max' => 255],
+            [['name', 'commercial_name', 'code', 'identification', 'country_code_phone', 'phone', 'country_code_fax', 'fax', 'email', 'address', 'other_signs', 'number_exoneration_doc', 'name_institution_exoneration'], 'string', 'max' => 255],
             [['canton_id'], 'exist', 'skipOnError' => true, 'targetClass' => Canton::className(), 'targetAttribute' => ['canton_id' => 'id']],
             [['condition_sale_id'], 'exist', 'skipOnError' => true, 'targetClass' => ConditionSale::className(), 'targetAttribute' => ['condition_sale_id' => 'id']],
             [['credit_days_id'], 'exist', 'skipOnError' => true, 'targetClass' => CreditDays::className(), 'targetAttribute' => ['credit_days_id' => 'id']],
@@ -147,8 +145,7 @@ class Customer extends BaseModel
             'created_at' => Yii::t('backend', 'Fecha de creación'),
             'updated_at' => Yii::t('backend', 'Fecha de actualización'),
             'identification_type_id' => Yii::t('backend', 'Tipo de identificación'),
-            'identification' => Yii::t('backend', 'Identificación'),
-            'foreign_identification' => Yii::t('backend', 'Identif. extranjera'),
+            'identification' => Yii::t('backend', 'Identificación'),            
             'customer_type_id' => Yii::t('backend', 'Tipo de cliente'),
             'customer_classification_id' => Yii::t('backend', 'Clasificación'),
             'country_code_phone' => Yii::t('backend', 'Cod. País'),
@@ -414,8 +411,7 @@ class Customer extends BaseModel
             return isset($model->identification_type_id)? $model->identificationType->name : '';
         };
 
-        $fields['identification'] = 'identification';
-        $fields['foreign_identification'] = 'foreign_identification';
+        $fields['identification'] = 'identification';        
 
         $fields['customer_type_id'] = 'customer_type_id';
         $fields['customer_type_label'] = function(Customer $model){

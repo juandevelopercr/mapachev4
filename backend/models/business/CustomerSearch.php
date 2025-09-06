@@ -19,7 +19,7 @@ class CustomerSearch extends Customer
     {
         return [
             [['id', 'status', 'identification_type_id', 'customer_type_id', 'customer_classification_id', 'province_id', 'canton_id', 'disctrict_id', 'condition_sale_id', 'credit_days_id', 'enable_credit_max', 'price_assigned', 'is_exonerate', 'exoneration_document_type_id'], 'integer'],
-            [['name', 'commercial_name', 'code', 'description', 'created_at', 'updated_at', 'identification', 'foreign_identification', 'country_code_phone', 'phone', 'country_code_fax', 'fax', 'email', 'address', 'other_signs', 'number_exoneration_doc', 'name_institution_exoneration', 'exoneration_date', 'route_transport_id', 'sellers', 'collectors', 'user_id'], 'safe'],
+            [['name', 'commercial_name', 'code', 'description', 'created_at', 'updated_at', 'identification', 'country_code_phone', 'phone', 'country_code_fax', 'fax', 'email', 'address', 'other_signs', 'number_exoneration_doc', 'name_institution_exoneration', 'exoneration_date', 'route_transport_id', 'sellers', 'collectors', 'user_id', 'economicActivity'], 'safe'],
             [['credit_amount_colon', 'credit_amount_usd', 'exoneration_purchase_percent'], 'number'],
         ];
     }
@@ -98,8 +98,7 @@ class CustomerSearch extends Customer
             ->andFilterWhere(['LIKE', 'commercial_name', $this->commercial_name])
             ->andFilterWhere(['LIKE', 'code', $this->code])
             ->andFilterWhere(['LIKE', 'description', $this->description])
-            ->andFilterWhere(['LIKE', 'identification', $this->identification])
-            ->andFilterWhere(['LIKE', 'foreign_identification', $this->foreign_identification])
+            ->andFilterWhere(['LIKE', 'identification', $this->identification])            
             ->andFilterWhere(['LIKE', 'country_code_phone', $this->country_code_phone])
             ->andFilterWhere(['LIKE', 'phone', $this->phone])
             ->andFilterWhere(['LIKE', 'country_code_fax', $this->country_code_fax])

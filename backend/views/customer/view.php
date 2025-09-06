@@ -62,8 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format'=> 'html',
                     ],
 
-                    'identification',
-                    'foreign_identification',
+                    'identification',                    
                     /*
                     [
                         'attribute'=> 'customer_type_id',

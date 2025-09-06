@@ -1,19 +1,21 @@
 <?php
 
-use kartik\switchinput\SwitchInput;
-use kartik\number\NumberControl;
-use kartik\datecontrol\DateControl;
-use kartik\select2\Select2;
-use backend\models\nomenclators\CreditDays;
+use backend\models\nomenclators\ActividadEconomica;
 use backend\models\nomenclators\ConditionSale;
-use backend\models\settings\Issuer;
-use backend\models\nomenclators\IdentificationType;
-use backend\models\nomenclators\CustomerType;
+use backend\models\nomenclators\CreditDays;
 use backend\models\nomenclators\CustomerClassification;
+use backend\models\nomenclators\CustomerType;
 use backend\models\nomenclators\ExonerationDocumentType;
-use backend\models\nomenclators\UtilsConstants;
+use backend\models\nomenclators\IdentificationType;
 use backend\models\nomenclators\RouteTransport;
+use backend\models\nomenclators\UtilsConstants;
+use backend\models\settings\Issuer;
 use common\models\User;
+use kartik\datecontrol\DateControl;
+use kartik\number\NumberControl;
+use kartik\select2\Select2;
+use kartik\switchinput\SwitchInput;
+
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\business\Customer */
@@ -76,15 +78,10 @@ use common\models\User;
             ])
             ?>
         </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'foreign_identification')->textInput(['maxlength' => true]) ?>
-        </div>
-        <?php 
-        /*
-        <div class="col-md-3">
+         <div class="col-md-3">
             <?=
-            $form->field($model, "customer_type_id")->widget(Select2::classname(), [
-                "data" => CustomerType::getSelectMap(),
+            $form->field($model, "economicActivity")->widget(Select2::classname(), [
+                "data" => ActividadEconomica::getSelectMap(),
                 "language" => Yii::$app->language,
                 "options" => ["placeholder" => "----", "multiple" => false],
                 "pluginOptions" => [
@@ -92,55 +89,8 @@ use common\models\User;
                 ],
             ]);
             ?>
-        </div>
-        <div class="col-md-2">
-            <?=
-            $form->field($model, "customer_classification_id")->widget(Select2::classname(), [
-                "data" => CustomerClassification::getSelectMap(),
-                "language" => Yii::$app->language,
-                "options" => ["placeholder" => "----", "multiple" => false],
-                "pluginOptions" => [
-                    "allowClear" => true
-                ],
-            ]);
-            ?>
-        </div>
-        <div class="col-md-2">
-            <?=
-            $form->field($model, "price_assigned")->widget(Select2::classname(), [
-                "data" => UtilsConstants::getCustomerAsssignPriceSelectType(),
-                "language" => Yii::$app->language,
-                "options" => ["multiple" => false],
-                "pluginOptions" => [
-                    "allowClear" => true
-                ],
-            ]);
-            ?>
-        </div>
-        */
-        ?>
+        </div>        
     </div>
-    <?php 
-    /*
-    <div class="row">
-        
-        <div class="col-md-3">
-            <?=
-            $form->field($model, "route_transport_id")->widget(Select2::classname(), [
-                "data" => RouteTransport::getSelectMap(),
-                "language" => Yii::$app->language,
-                "options" => ["placeholder" => "----", "multiple" => false],
-                "pluginOptions" => [
-                    "allowClear" => true
-                ],
-            ]);
-            ?>
-        </div>
-
-    </div>
-    */
-    ?>
-
     <div class="row">
         <div class="col-md-3">
             <?=
@@ -153,39 +103,7 @@ use common\models\User;
                 ],
             ]);
             ?>
-        </div>
-        <?php 
-        /*
-        <div class="col-md-2">
-            <?=
-            $form->field($model, "credit_amount_colon")->widget(NumberControl::classname(), [
-                "maskedInputOptions" => [
-                    "allowMinus" => false,
-                    "groupSeparator" => ".",
-                    "radixPoint" => ",",
-                    "digits" => 2
-                ],
-                "displayOptions" => ["class" => "form-control kv-monospace"],
-                "saveInputContainer" => ["class" => "kv-saved-cont"]
-            ])
-            ?>
-        </div>
-        <div class="col-md-2">
-            <?=
-            $form->field($model, "credit_amount_usd")->widget(NumberControl::classname(), [
-                "maskedInputOptions" => [
-                    "allowMinus" => false,
-                    "groupSeparator" => ".",
-                    "radixPoint" => ",",
-                    "digits" => 2
-                ],
-                "displayOptions" => ["class" => "form-control kv-monospace"],
-                "saveInputContainer" => ["class" => "kv-saved-cont"]
-            ])
-            ?>
-        </div>
-        */
-        ?>
+        </div>        
         <div class="col-md-2">
             <?=
             $form->field($model, "credit_days_id")->widget(Select2::classname(), [
@@ -197,61 +115,9 @@ use common\models\User;
                 ],
             ]);
             ?>
-        </div>
-        <?php 
-        /*
-        <div class="col-md-2">
-            <?=
-            $form->field($model, "enable_credit_max")->widget(SwitchInput::classname(), [
-                "type" => SwitchInput::CHECKBOX,
-                "pluginOptions" => [
-                    "onText" => Yii::t("backend", "SI"),
-                    "offText" => Yii::t("backend", "NO")
-                ]
-            ])
-            ?>
-        </div>
-        */
-        ?>
+        </div>        
     </div>
-    <?php 
-    /*
-    <div class="row">
-        <div class="col-md-4">
-            <?=
-            $form->field($model, "sellers")->widget(Select2::classname(), [
-                "data" => User::getSelectMapAgents(),
-                "language" => Yii::$app->language,
-                'maintainOrder' => true,
-                "options" => [
-                    "placeholder" => "----",
-                    "multiple" => true
-                ],
-                "pluginOptions" => [
-                    "allowClear" => true
-                ]
-            ]);
-            ?>
-        </div>
-        <div class="col-md-4">
-            <?=
-            $form->field($model, "collectors")->widget(Select2::classname(), [
-                "data" => User::getSelectMapAgents(),
-                "language" => Yii::$app->language,
-                'maintainOrder' => true,
-                "options" => [
-                    "placeholder" => "----",
-                    "multiple" => true
-                ],
-                "pluginOptions" => [
-                    "allowClear" => true
-                ]
-            ]);
-            ?>
-        </div>
-    </div>
-    */
-    ?>
+    
     <?php
     /*
     Esto lo deshailité porque lo que se exonera es el producto o el servicio no el cliente

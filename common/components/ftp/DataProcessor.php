@@ -305,9 +305,8 @@ class DataProcessor
                     $customer->code = $identification;
                     
                     if (!empty($pais) && strtoupper($pais) != 'CRI'){  // Es extranjero
-                        $customer->foreign_identification = $identification;
-                        $customer->identification_type_id = 10; // Pasaporte
-                        $customer->identification = '999999999';
+                        $customer->identification = $identification;
+                        $customer->identification_type_id = 10; // Pasaporte                        
                     }
                     else
                     {
@@ -436,20 +435,7 @@ class DataProcessor
             $customer = new Customer();
             $customer->attributes = $cliente_contado->attributes;
             $customer->code = $customer->generateCode();
-            $customer->name = $cliente_contado->name . ' - '.  $name;                        
-            /*
-            if (!empty($pais) && strtoupper($pais) != 'CRI'){  // Es extranjero
-                $customer->foreign_identification = $identification;
-                $customer->identification_type_id = 10; // Pasaporte
-                $customer->identification = '999999999';
-            }
-            else
-            {
-                $customer->identification = $identification;
-                $customer->identification_type_id = 6; // Cédula fisica
-            }
-            */
-
+            $customer->name = $cliente_contado->name . ' - '.  $name;                                    
             //$customer->address = $address;
             //$customer->phone   = $phone;
             //$customer->email   = $email;

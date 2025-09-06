@@ -1173,26 +1173,18 @@ class ApiXML
 
         $nodo = $doc->createElement('Nombre', htmlspecialchars($debit_note->customer->name));
         $receptor->appendChild($nodo);
+        
+        $campo_tipo_identificacion = trim($debit_note->customer->identificationType->code);
+        $campo_identificacion = trim($debit_note->customer->identification);
 
-        if ($debit_note->customer->identificationType->code == '05') // Pasaporte entonces poner el código 
-        {
-            $nodo = $doc->createElement('IdentificacionExtranjero', htmlspecialchars($debit_note->customer->foreign_identification));
-            $receptor->appendChild($nodo);
-        }
-        else		
-        {
-            $campo_tipo_identificacion = trim($debit_note->customer->identificationType->code);
-            $campo_identificacion = trim($debit_note->customer->identification);
+        $identificacion = $doc->createElement('Identificacion');
+        $receptor->appendChild($identificacion);
 
-            $identificacion = $doc->createElement('Identificacion');
-            $receptor->appendChild($identificacion);
-    
-            $nodo = $doc->createElement('Tipo', $campo_tipo_identificacion);
-            $identificacion->appendChild($nodo);
-    
-            $nodo = $doc->createElement('Numero', $campo_identificacion);
-            $identificacion->appendChild($nodo);    
-        }
+        $nodo = $doc->createElement('Tipo', $campo_tipo_identificacion);
+        $identificacion->appendChild($nodo);
+
+        $nodo = $doc->createElement('Numero', $campo_identificacion);
+        $identificacion->appendChild($nodo);    
 
         if (!is_null($debit_note->customer->commercial_name) && !empty($debit_note->customer->commercial_name))
         {
