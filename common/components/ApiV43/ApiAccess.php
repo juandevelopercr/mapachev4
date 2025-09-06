@@ -20,7 +20,6 @@ class ApiAccess
 	public $refresh_token = NULL;       // Este es el token utilizado para el proceso de Refresh, este token tiene un tiempo de expiraci;on mucho mayor que el access_token
 	public $refresh_expires_in = NULL;  // Tiempo de expiración en segundos del refresh_token, cuando el refresh_token expira se acabó la sessión y es necesario crear una nueva sesión			
 
-
     /**
      * @param Issuer $emisor
      * @return array
@@ -55,7 +54,7 @@ class ApiAccess
 					  'password' => $password,
 					  'grant_type' => 'password',
 					  'client_secret' => '',//always empty
-					  'scopes' =>''
+					  //'scopes' =>''
 				])		
 				->send();					
 		} 
@@ -139,7 +138,7 @@ class ApiAccess
 					  'refresh_token' => $this->refresh_token,
 					  'grant_type' => 'refresh_token',
 					  'client_secret' => '',//always empty
-					  'scope' =>''
+					  //'scope' =>''
 				])		
 				->send();	
 		} 
