@@ -122,7 +122,7 @@ class ApiConsultaHacienda
 			if ($response->ind_estado == 'rechazado')
 			{
 				$estado = 'rechazado';
-				$xml_response_hacienda_decode = base64_decode($response->respuesta_xml);
+				$xml_response_hacienda_decode = base64_decode($response->respuesta_xml);				
 				if($tipo_documento == '01')
                 {
 					Invoice::verifyResponseStatusHacienda($key, $estado, $xml_response_hacienda_decode);

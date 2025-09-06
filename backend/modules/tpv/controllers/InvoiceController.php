@@ -1114,8 +1114,8 @@ class InvoiceController extends Controller
         $proceder = true;
 
         $status_hacienda = (int) $factura->status_hacienda;
-        if($status_hacienda === UtilsConstants::HACIENDA_STATUS_NOT_SENT || $status_hacienda === UtilsConstants::HACIENDA_STATUS_RECEIVED)
-        {
+        //if($status_hacienda === UtilsConstants::HACIENDA_STATUS_NOT_SENT || $status_hacienda === UtilsConstants::HACIENDA_STATUS_RECEIVED)
+        //{
             if ($error == 0 && $proceder == true)
             {
                 // Si todas las validaciones son correctas, proceder al proceso
@@ -1139,6 +1139,7 @@ class InvoiceController extends Controller
 
                     if ($estado == 'aceptado') {
                         // Extraer del inventario 
+                        /*
                         $invoice = Invoice::findOne($invoice_id);
                         $items_associates = ItemInvoice::findAll(['invoice_id' => $invoice_id]);
                         foreach ($items_associates AS $index => $item)
@@ -1165,6 +1166,7 @@ class InvoiceController extends Controller
                                 }
                             }
                         }
+                            */
                     }
                 }
                 else
@@ -1174,7 +1176,7 @@ class InvoiceController extends Controller
                     $titulo = "Error <hr class=\"kv-alert-separator\">";
                 }
             }
-        }
+        /*}
         else
         {
             $mensaje = 'El estado de hacienda ya fue recibido';
@@ -1182,6 +1184,7 @@ class InvoiceController extends Controller
             $titulo = "Informaci&oacute;n <hr class=\"kv-alert-separator\">";
             $actualizar = 0;
         }
+        */    
 
         return \Yii::$app->response->data  =  ['mensaje' => $mensaje, 'type'=>$type, 'titulo'=>$titulo, 'actualizar'=>$actualizar];
     }    
