@@ -55,11 +55,13 @@ class ApiAccess
 					  'password' => $password,
 					  'grant_type' => 'password',
 					  'client_secret' => '',//always empty
-					  'scope' =>''
+					  'scopes' =>''
 				])		
 				->send();	
+
+				die(var_dump($response));
 		} 
-		catch (\Exception $e) {
+		catch (\Exception $e) {			
 			$error = 1;
 			$mensaje = 'Ha ocurrido un error en el proceso de inicio de sesión en la API de Hacienda. Por favor inténtelo nuevamente, si el error persiste póngase en contacto con el administrador del sistema';
 			$type = 'danger';
@@ -85,6 +87,7 @@ class ApiAccess
 			$error = 1;			
 			try {
 				$data = Json::decode($response->content);
+				die(var_dump($data));
 				$errorcode = $data['error'];
 				if ($errorcode == 'invalid_grant')
 				{
